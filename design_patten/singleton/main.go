@@ -27,6 +27,12 @@ func main() {
 	fmt.Printf("pointer=%p\n", obj2)
 	obj3 := GetInstance()
 	fmt.Printf("pointer=%p\n", obj3)
+
+	/*
+		pointer=0x11a7c70
+		pointer=0x11a7c70
+		pointer=0x11a7c70
+	*/
 }
 
 var (
