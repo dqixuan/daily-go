@@ -45,7 +45,7 @@ type Singleton struct {
 
 var s *Singleton
 
-// GetInstance 你好
+// GetInstance 获取实例
 func GetInstance() *Singleton {
 	if s == nil {
 		once.Do(
