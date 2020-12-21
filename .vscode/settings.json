@@ -9,5 +9,8 @@
         "go.useCodeSnippetsOnFunctionSuggest": true,
         "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
         "go.docsTool": "gogetdoc",
+    },
+    "files.associations": {
+        "cstdio": "cpp"
     }
 }
