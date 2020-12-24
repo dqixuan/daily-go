@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
 
 /*
 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。
@@ -49,8 +52,11 @@ func main() {
 	n1.Right = &n4
 	n3.Right = &n5
 
-	reult := Print(&root)
-	fmt.Println(reult)
+	// reult := Print(&root)
+
+	r := printTree(&root)
+	// fmt.Println(reult)
+	fmt.Println(r)
 }
 
 // TreeNode 节点结构
@@ -58,6 +64,69 @@ type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
+}
+
+//   采用golang内置结构体 container/list
+
+func printTree(pRoot *TreeNode) [][]int {
+	var result [][]int
+	if pRoot == nil {
+		return result
+	}
+	l := list.New()
+	l.PushBack(pRoot)
+	level := 0
+	result = append(result, []int{pRoot.Val})
+	var node *TreeNode
+	for {
+		length := l.Len()
+		if length == 0 {
+			break
+		}
+		s := []int{}
+		if level % 2 == 0 {
+			e := l.Back()
+			for i := length; i > 0 ;i-- {
+				node = e.Value.(*TreeNode)
+				if node.Right != nil {
+					s = append(s, node.Right.Val)
+					l.PushFront(node.Right)
+				}
+				if node.Left != nil {
+					s = append(s, node.Left.Val)
+					l.PushFront(node.Left)
+				}
+				e = e.Prev()
+				l.Remove(e.Next())
+			}
+		} else {
+			e := l.Front()
+			for i := length; i > 0; i-- {
+				node = e.Value.(*TreeNode)
+				if node.Left != nil {
+					s = append(s, node.Left.Val)
+					l.PushBack(node.Left)
+				}
+				if node.Right != nil {
+					s = append(s, node.Right.Val)
+					l.PushBack(node.Right)
+				}
+				
+				if e.Next() == nil {
+					l.Remove(e)
+				} else {
+					e = e.Next()
+				l.Remove(e.Prev())
+				}
+			}
+		}
+		if len(s) != 0 {
+			result = append(result, s)
+		}
+		level++
+	}
+
+	return result
 }
 
 // Print 打印之字型输出 待优化
