@@ -23,7 +23,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		flag = 0
 	)
 
-	for l1 != nil && l2 != nil {
+	for l1 != nil || l2 != nil {
 		sum := flag
 		if l1 != nil {
 			sum += l1.Val
@@ -36,6 +36,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		newNode := &ListNode{Val:sum % 10}
 		cur.Next = newNode
 		cur = cur.Next
+		flag = sum / 10
 	}
 	if flag != 0 {
 		cur.Next = &ListNode{Val:flag}
