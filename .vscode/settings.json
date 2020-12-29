@@ -12,5 +12,6 @@
     },
     "files.associations": {
         "cstdio": "cpp"
-    }
+    },
+    "html.format.templating": false
 }
