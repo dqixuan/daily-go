@@ -31,7 +31,9 @@ func inOrderTraversal(root *TreeNode) (res []int) {
 
 // 方法2:迭代思维，利用栈
 func inorderTraversal(root *TreeNode) []int {
-
+	ans := []int{}
+	stack := []*TreeNode{}
+	
 	return nil
 }
 
