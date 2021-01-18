@@ -47,4 +47,29 @@ func inorderTraversal(root *TreeNode) []int {
 	return ans
 }
 
+//方法3：morris算法 时间复杂度O(n) 空间复杂度O(1)
+func morrisInOrder(root *TreeNode) []int {
+	ans := []int{}
+	cur := root
 
+	for cur != nil {
+		if cur.Left != nil {
+			pre := cur.Left
+			for pre.Right != nil && pre.Right != cur {
+				pre = pre.Right
+			}
+			if pre.Right == nil {
+				pre.Right = cur
+				cur = cur.Left
+			} else {
+				ans = append(ans, cur.Val)
+				pre.Right = nil
+				cur = cur.Right
+			}
+		} else {
+			ans = append(ans, cur.Val)
+			cur = cur.Right
+		}
+	}
+	return ans
+}
