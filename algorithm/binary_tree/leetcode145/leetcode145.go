@@ -50,3 +50,36 @@ func stackPostOrder(root *TreeNode) ([]int) {
 	}
 	return ans
 }
+
+// 方法3：迭代法，思路：如果一个节点的左右子树为空，输出该节点；如果之前访问的节点是当前节点的左节点或右节点，输出该节点
+// 其他情况，输入当前右节点、左节点
+func stackPostOrder2(root *TreeNode) []int {
+	ans := []int{}
+	if root == nil {
+		return ans
+	}
+	stack := []*TreeNode{root}
+	var pre *TreeNode
+
+	for len(stack) > 0 {
+		root = stack[len(stack) - 1]
+		if (root.Left==nil&&root.Right==nil) || ((pre!=nil)&&(root.Left==pre||root.Right==pre)) {
+			ans = append(ans, root.Val)
+			stack = stack[:len(stack) - 1]
+		} else {
+			if root.Right != nil {
+				stack = append(stack, root.Right)
+			}
+			if root.Left != nil {
+				stack = append(stack, root.Left)
+			}
+		}
+	}
+	return ans
+}
+
+//
+func morrisPostOrder(root *TreeNode) []int {
+
+	return nil
+}
