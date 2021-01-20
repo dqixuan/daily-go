@@ -78,8 +78,64 @@ func stackPostOrder2(root *TreeNode) []int {
 	return ans
 }
 
-//
-func morrisPostOrder(root *TreeNode) []int {
-
-	return nil
+// 方法4： morris算法
+func postorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return nil
+	}
+	ans := []int{}
+	dump := &TreeNode{Val:-1, Left:root}
+	cur := dump
+	var pre *TreeNode
+	for cur != nil {
+		if cur.Left == nil {
+			cur = cur.Right
+		} else {
+			pre = cur.Left
+			for pre.Right != nil && pre.Right != cur {
+				pre = pre.Right
+			}
+			if pre.Right == nil {
+				pre.Right = cur
+				cur = cur.Left
+			} else {
+				printEdge(cur.Left, pre, &ans)
+				pre.Right = nil
+				cur = cur.Right
+			}
+		}
+	}
+	return ans
 }
+
+func printEdge(from, to *TreeNode, ans *[]int) {
+	reverse(from, to)
+	t := to
+	for {
+		*ans = append(*ans, t.Val)
+		if t == from {
+			break
+		}
+		t = t.Right
+	}
+	reverse(to, from)
+}
+
+func reverse(from, to *TreeNode) {
+	if from == to {
+		return
+	}
+	var (
+		cur = from
+		next = from.Right
+		nextnext *TreeNode
+	)
+
+	for cur != to {
+		nextnext = next.Right
+		next.Right = cur
+		cur = next
+		next = nextnext
+	}
+}
+
