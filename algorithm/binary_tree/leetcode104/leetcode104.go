@@ -5,7 +5,7 @@
 
 package leetcode104
 
-// leetcode 104 求二叉树的最大高度
+// leetcode-Offer32 104 求二叉树的最大高度
 
 // TreeNode 节点结构
 type TreeNode struct {
