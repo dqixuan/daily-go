@@ -13,9 +13,7 @@ func combine(n int, k int) [][]int {
 
 func backTracing(n, idx, k int, arr *[]int, ans *[][]int) {
 	if len(*arr) == k {
-		tmp := make([]int, k)
-		copy(tmp, *arr)
-		*ans = append(*ans, tmp)
+		*ans = append(*ans, append([]int{}, *arr...))
 		return
 	}
 	for i := idx; i <= n; i++ {
