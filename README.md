@@ -5,6 +5,7 @@
 
 ### 1、刷[Leetcode](https://github.com/dqixuan/daily-go/tree/main/algorithm) 
    - 组合  [Leetcode77](https://github.com/dqixuan/daily-go/tree/main/algorithm/leetcode77)
+   - 删除多余的括号 [leetcode1249](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode1249/leetcode1249.go)
    - 全排列 [leetcode46](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode46/leetcode46.go)
    - 组合总和  [Leetcode39](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode39/leetcode39.go)
    - 子集  [leetcode78](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode78/leetcode78.go)
