@@ -5,7 +5,11 @@
 
 ### 1、刷[Leetcode](https://github.com/dqixuan/daily-go/tree/main/algorithm) 
    - 组合  [Leetcode77](https://github.com/dqixuan/daily-go/tree/main/algorithm/leetcode77)
+   - 全排列 [leetcode46](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode46/leetcode46.go)
    - 组合总和  [Leetcode39](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode39/leetcode39.go)
+   - 子集  [leetcode78](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode78/leetcode78.go)
    - 二叉树的中序遍历  [Leetcode94](https://github.com/dqixuan/daily-go/blob/main/algorithm/binary_tree/leetcode94/leetcode94.go)
+
+
 
 ### 2、[设计模式](https://github.com/dqixuan/daily-go/tree/main/design_patten)
