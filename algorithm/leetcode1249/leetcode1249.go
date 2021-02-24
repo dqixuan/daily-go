@@ -7,7 +7,8 @@ import (
 
 // 移除无效的括号 1249
 
-func minRemoveToMakeValid(s string) string {
+// minRemoveToMakeValid1 记录
+func minRemoveToMakeValid1(s string) string {
 	if s == "" {
 		return ""
 	}
@@ -40,6 +41,38 @@ func minRemoveToMakeValid(s string) string {
 }
 
 // main 待优化
+
+func minRemoveToMakeValid(s string) string {
+	if s == "" {
+		return ""
+	}
+	ans := make([]byte, 0)
+	balance := 0
+
+	for i, l := 0, len(s); i < l; i++ {
+		if s[i] == ')' {
+			if balance <= 0 {
+				continue
+			} else {
+				balance--
+				ans = append(ans, s[i])
+			}
+		} else if s[i] == '(' {
+			balance++
+			ans = append(ans, s[i])
+		} else {
+			ans = append(ans, s[i])
+		}
+	}
+	// 不能正向遍历，若存在'('，执行if后 i不变，ans[i]指向的内容有变化
+	for i := len(ans) - 1; i >= 0 && balance > 0; i-- {
+		if ans[i] == '(' {
+			ans = append(ans[:i], ans[i+1:]...)
+			balance--
+		}
+	}
+	return string(ans)
+}
 func main() {
-	fmt.Println(minRemoveToMakeValid("lee(t(c)o)de)"))
+	fmt.Println(minRemoveToMakeValid("))(("))
 }
