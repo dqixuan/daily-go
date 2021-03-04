@@ -10,8 +10,11 @@
     ```
    拷贝切片只是复制这个三个常量， 所以拷贝大切片和小切片的代价是相同的。
 
-## 翻转含有中文、数字、英文字母的字符串ds```
-   func reverse(s string) string { 
+## 翻转含有中文、数字、英文字母的字符串ds
+   代码如下：
+   
+   ```
+    func reverse(s string) string { 
         runeSlice := []rune(s)
         for l, r:=0, len(runeSlice)-1; l < r; {
             runeSlice[l], runeSlice[r] = runeSlice[r], runeSlice[l]
@@ -21,20 +24,4 @@
         return string(runeSlice)
     }
     ```
-     
-   [注]：一个英文或数字，对应一个字节；汉字对应三个字节，测试代码如下```
-    s1 := "abc"
-    s2 := "abc丁"
-    fmt.Println(len(s1)) // 3
-    fmt.Println(len(s2)) // 6
-   ```
-    
- ## map不初始化会怎么样，初始化长度和不初始化长度区别
-   三种定义map的形式
-    - var m map[key]value
-    - 2 m := make(map[key]value)
-    - 3 m := make(map[key]value, 10)
-    第一种，声明map但未初始化
-        写入数据，panic：assignment to entry in nil map; 
-        读取数据不会报错, m[key] 为value对应的0值，如int:0, string:空字符串，[]string:[]等
-    第二种，声明并初始化map,
+
