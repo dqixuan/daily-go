@@ -44,4 +44,11 @@
         写入数据，panic：assignment to entry in nil map; 
         读取数据不会报错, m[key] 为value对应的0值，如int:0, string:空字符串，[]string:[]等
     第二种，声明并初始化map,
+    
+## make和new的区别
+   1、make 分配并初始化类型所需的内存空间和结构，并返回类型本身；new分配类型所需的内存空间，返回指向内存的指针
+   2、相同点：都是go的内置函数，都可用于分配内存空间
+   3、make仅支持slice、map、channel三种类型的创建，初始化内置的数据结构
+   4、make能传多个参数， new只能传一个类型参数
+   5、分配内存在哪？栈或堆？  不一定，对象大小、是否发生内存逃逸？
 
