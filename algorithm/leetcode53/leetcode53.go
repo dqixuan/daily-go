@@ -17,7 +17,7 @@ func maxSubArray(arr []int) int {
 
 	ans := arr[0] // 不能赋值0， 有可能数组中数字全部小于0
 	sum := 0
-	for i, l := 0, len(arr)-1; i < l; i++ {
+	for i, l := 0, len(arr); i < l; i++ {
 		sum += arr[i]
 		if sum > ans {
 			ans = sum // 更新返回值
