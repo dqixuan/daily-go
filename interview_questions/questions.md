@@ -36,14 +36,16 @@
   ```
     
 ## map不初始化会怎么样，初始化长度和不初始化长度区别
-   三种定义map的形式
-   - 1var m map[key]value
-   - 2 m := make(map[key]value)
-   - 3 m := make(map[key]value, 10)
-   第一种，声明map但未初始化
-        写入数据，panic：assignment to entry in nil map; 
-        读取数据不会报错, m[key] 为value对应的0值，如int:0, string:空字符串，[]string:[]等
-    第二种，声明并初始化map,
+三种定义map的形式
+```
+var m map[key]value
+m := make(map[key]value)
+m := make(map[key]value, 10)
+```
+第一种，声明map但未初始化
+   写入数据，panic：assignment to entry in nil map; 
+   读取数据不会报错, m[key] 为value对应的0值，如int:0, string:空字符串，[]string:[]等
+第二种，声明并初始化map,
     
 ## make和new的区别
    1、make 分配并初始化类型所需的内存空间和结构，并返回类型本身；new分配类型所需的内存空间，返回指向内存的指针
@@ -51,4 +53,7 @@
    3、make仅支持slice、map、channel三种类型的创建，初始化内置的数据结构
    4、make能传多个参数， new只能传一个类型参数
    5、分配内存在哪？栈或堆？  不一定，对象大小、是否发生内存逃逸？
+   
+## Golang GC过程
+    
 
