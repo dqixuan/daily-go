@@ -55,10 +55,17 @@ m := make(map[key]value, 10)
    5、分配内存在哪？栈或堆？  不一定，对象大小、是否发生内存逃逸？
    
 ## Golang GC过程
-流程图如下：
 ![image](https://github.com/dqixuan/daily-go/blob/main/Image/question_readme/golang_gc.png)
+```
+   流程图如下：
 第一步：扫描根对象。 1.8之前，全局变量和开启写屏障需要STW，G stack只需要停止该协程
 第二步：标记。算法：三色标记法。
 第三步：重新标记。重新扫描全局变量，以及修改过的协程栈。 需要STW。
 第四部：按标记结果清除。
+```
+三色标记法：
+
+
+
+
 
