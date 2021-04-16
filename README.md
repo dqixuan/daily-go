@@ -14,6 +14,10 @@
    - 子集  [leetcode78](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode78/leetcode78.go)
    - 二叉树的中序遍历  [Leetcode94](https://github.com/dqixuan/daily-go/blob/main/algorithm/binary_tree/leetcode94/leetcode94.go)
    - 搜索旋转排序数组 [leetcode33](https://github.com/dqixuan/daily-go/blob/main/algorithm/leetcode33/leetcode33.go)
+   - 二叉搜索树节点最小距离 [783](https://github.com/dqixuan/daily-go/blob/main/algorithm/binary_tree/MinimumDistanceBetweenBST.go)
+   
+## 剑指Offer
+1、  [找出第一个重复的数字](https://github.com/dqixuan/daily-go/blob/main/algorithm/offer/LCOF.go)
 
 
 
