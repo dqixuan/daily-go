@@ -18,6 +18,7 @@
    
 ## 剑指Offer
 1、  [找出第一个重复的数字](https://github.com/dqixuan/daily-go/blob/main/algorithm/offer/LCOF.go)
+2、  [在有序二维数组中查找某个数](https://github.com/dqixuan/daily-go/blob/main/algorithm/offer/findIn2Array.go)
 
 
 
