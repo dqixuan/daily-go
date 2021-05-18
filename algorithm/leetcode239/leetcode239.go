@@ -5,7 +5,10 @@
 
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
 
 func main() {
 	nums := []int{1,2,3,4,5,6,7}
@@ -24,9 +27,24 @@ func rotate(nums []int, k int)  {
 	}
 	return
 }
-
-
 func maxSlidingWindow(nums []int, k int) []int {
+	list := list.New()
+	ans := []int {}
+	idx := 0
+	for i:=0; i<len(nums); i++ {
+		if list.Len() == 0 {
+			list.PushBack(i)
+		}
+		e := list.Back()
+		idx1 := e.Value.(int)
+		
+	}
+
+}
+
+
+// 算法复杂度 O(Kn)
+func maxSlidingWindow1(nums []int, k int) []int {
 	if k == 1 {
 		return nums
 	}
