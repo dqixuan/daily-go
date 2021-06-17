@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"go.mod/practice/distributed/log"
+	"go.mod/practice/distributed/registry"
 	"go.mod/practice/distributed/service"
 	stdlog "log"
 )
@@ -17,11 +18,16 @@ import (
 func main() {
 	log.Run("./distributed.log")
 	host, port := "localhost", "3000"
+	serviceUrl := fmt.Sprintf("http://%s:%s", host, port)
+	reg := registry.Registration{
+		ServiceName: "Log Service",
+		ServiceUrl:  serviceUrl,
+	}
 	ctx, err := service.Start(
 		context.Background(),
-		"Log service",
 		host,
 		port,
+		reg,
 		log.RegisterHandlers,
 		)
 	if err != nil {

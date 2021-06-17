@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"go.mod/practice/distributed/registry"
 	"log"
 	"net/http"
 )
@@ -13,13 +14,18 @@ import (
   time:22:09
 */
 
-func Start(ctx context.Context, serviceName, host, port string, registerHandlersFunc func()) (context.Context, error) {
+func Start(ctx context.Context, host, port string, reg registry.Registration, registerHandlersFunc func()) (context.Context, error) {
 	registerHandlersFunc()
-	ctx = startService(ctx, serviceName, host, port)
+	ctx = startService(ctx, reg.ServiceName, host, port)
+
+	err := registry.RegisterService(reg)
+	if err != nil {
+		return ctx, err
+	}
 	return ctx, nil
 }
 
-func startService(ctx context.Context, serviceName, host, port string) context.Context {
+func startService(ctx context.Context, serviceName registry.ServiceName, host, port string) context.Context {
 	ctx, cancel := context.WithCancel(ctx)
 
 	var srv http.Server

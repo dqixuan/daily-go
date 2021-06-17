@@ -2,6 +2,7 @@ package registry
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"sync"
@@ -29,6 +30,16 @@ func (r *registry) add(reg Registration) error {
 	r.registration = append(r.registration, reg)
 	r.mutex.Unlock()
 	return nil
+}
+
+func (r *registry) remove(serviceUrl string) error {
+	for i := range r.registration {
+		if r.registration[i].ServiceUrl == serviceUrl {
+			r.mutex.Lock()
+			r.registration = append(r.registration[:i], r.registration[i+1:]...)
+		}
+	}
+	return fmt.Errorf("Service at URL %s not found", serviceUrl)
 }
 
 var reg = registry{
