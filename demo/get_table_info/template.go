@@ -1,7 +1,52 @@
 package main
 
-/**
-    name:丁其轩
-    date:2021/6/19
-    time:19:39
-*/
+import "html/template"
+
+func openBrace() string {
+	return "`"
+}
+
+var funsMap = template.FuncMap{
+	"openBrace":openBrace,
+}
+
+var transferType = map[string]string {
+	"bigint": "int64",
+	"tinyint":"int32",
+	"varchar":"string",
+	"datetime": "time.Time",
+	"text": "string",
+}
+
+type column struct {
+	ColumnName string
+	RawName string
+	LowFirstColName string
+	ColumnType string
+	Comment string
+
+}
+
+type table struct {
+	TableName string
+	LowFirstTableName string
+	Columns []column
+	Import []string
+}
+
+var modelTemplate = template.Must(template.New("model").Funcs(funsMap).Parse(`
+package model
+type {{.TableName}} struct {
+{{range $k, $v :=.Columns}}{{$v.ColumnName}} {{$v.ColumnType}} {{openBrace}}db:"{{$v.RawName}}"{{openBrace}} // {{$v.Comment}}
+{{end}}}
+`))
+
+
+var daoTemplate = template.Must(template.New("dao").Funcs(funsMap).Parse(`
+package dao
+import (
+	"fmt"
+	"time"
+	{{range $k, $v := .Imports}} "{{v}}"
+}
+`))
