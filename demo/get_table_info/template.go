@@ -31,7 +31,7 @@ type table struct {
 	TableName string
 	LowFirstTableName string
 	Columns []column
-
+	Import []string
 }
 
 var modelTemplate = template.Must(template.New("model").Funcs(funsMap).Parse(`
@@ -42,3 +42,11 @@ type {{.TableName}} struct {
 `))
 
 
+var daoTemplate = template.Must(template.New("dao").Funcs(funsMap).Parse(`
+package dao
+import (
+	"fmt"
+	"time"
+	{{range $k, $v := .Imports}} "{{v}}"
+}
+`))

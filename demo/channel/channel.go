@@ -19,7 +19,7 @@ func getResult(stringSlice []string) map[int32]int32 {
 	return result
 }
 
-func main() {
+func main1() {
 	s := paramHelper()
 	now := time.Now()
 	// 单协程执行
