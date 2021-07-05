@@ -19,5 +19,14 @@ func findDuplicate(arr []int) int {
 }
 
 func findDuplicate1(arr []int) int {
+	for idx, val := range arr {
+		if val != arr[idx] {
+			if val == arr[arr[idx]] {
+				return val
+			}
+			arr[idx] = arr[arr[idx]]
+			arr[arr[idx]] = val
+		}
+	}
 	return 0
 }
