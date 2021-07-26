@@ -6,7 +6,8 @@ import (
 )
 
 /*
-装饰器模式：包装现有方法，允许在现有方法的执行之前或之后添加自定义功能，以达到功能增强的目的。
+	装饰器模式：包装现有方法，允许在现有方法的执行之前或之后添加自定义功能，以达到功能增强的目的。
+	在不改变原对象的情况下，动态扩展一个对象的功能
 */
 
 func logger(m func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
