@@ -3,7 +3,7 @@
 *   @Date: 2021/1/10 21:55
 **/
 
-package leetcode104
+package max_tree_depth
 
 // leetcode-Offer32 104 求二叉树的最大高度
 

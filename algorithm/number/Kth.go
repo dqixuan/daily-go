@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// 求第K大的数
+// 求第K大的数  1、堆排序  2、变种的快排
 
 
 func main() {
@@ -55,3 +55,15 @@ func (ih *IntHeap) Pop() interface{} {
 	*ih = old[0:n-1]
 	return e
 }
+
+
+// 方法2 变种快排
+
+func getKth(arr []int, k int) int {
+	// 默认  len(arr) >=1    0<k<=len(arr)
+
+
+	return 0
+}
+
+

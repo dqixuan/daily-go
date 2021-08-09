@@ -3,7 +3,7 @@
 *   @Date: 2021/1/10 22:30
 **/
 
-package leetcode94
+package inorder_traverse
 
 // 题目：二叉树的中序遍历
 
