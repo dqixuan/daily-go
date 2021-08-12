@@ -1,0 +1,21 @@
+syntax='proto3';
+package student;
+
+option go_package=".;student";
+
+service Student {
+    rpc GetStudent (GetStudentReq) returns (GetStudentReply);
+}
+
+message StudentInfo {
+    string name = 1;
+    int32 grade = 2;
+}
+
+message GetStudentReq {
+    string name = 1;
+}
+
+message GetStudentReply {
+    StudentInfo student = 1;
+}
