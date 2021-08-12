@@ -4,13 +4,23 @@ import (
 	"github.com/micro/go-micro"
 	"go.mod/micro_service/api/student"
 	"go.mod/micro_service/service"
+	"log"
+	"time"
 )
 
 func main() {
-	sevice := micro.NewService(
-		micro.Name("student"))
+	sv := micro.NewService(
+		micro.Name("student"),
+		micro.RegisterTTL(10*time.Second),
+		micro.RegisterInterval(5*time.Second),
+		)
 
-	sevice.Init()
+	sv.Init()
 
-	student.RegisterStudentHandler(sevice.Server(), new(service.StudentService))
+	student.RegisterStudentHandler(sv.Server(), new(service.StudentService))
+
+	err := sv.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }

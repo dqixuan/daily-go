@@ -1,0 +1,2 @@
+micro_service包
+用来单机测试go-micro框架实现微服务
