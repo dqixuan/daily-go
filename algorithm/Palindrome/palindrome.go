@@ -1,6 +1,8 @@
 package Palindrome
 
-import "strconv"
+import (
+	"strconv"
+)
 
 /**
 	回文数  121 true  10 false
@@ -19,3 +21,29 @@ func isPalindrome(x int) bool {
 	}
 	return true
 }
+
+func oncequickSort(arr []int, left, right int) int {
+	key := arr[left]
+	for left < right {
+		for left < right && arr[right] >= key {
+			right--
+		}
+		arr[left] = arr[right]
+		for left < right && arr[right] <= key {
+			left++
+		}
+		arr[right] = arr[left]
+	}
+	arr[left] = key
+	return left
+}
+
+func quickSort(arr []int, left, right int) {
+	if left >= right {
+		return
+	}
+	mid := oncequickSort(arr, left, right)
+	quickSort(arr, left, mid-1)
+	quickSort(arr, mid+1, right)
+}
+

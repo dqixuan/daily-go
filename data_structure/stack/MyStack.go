@@ -40,3 +40,25 @@ func (ms *MyStack) Push(value interface{}) {
 	ms.top++
 	ms.items[ms.top] = value
 }
+
+func (ms *MyStack) Pop() (interface{}, error) {
+	if ms.Size() == 0 {
+		return nil, emptyStackError
+	}
+	val := ms.items[ms.top]
+	ms.items =  ms.items[:ms.top]
+	ms.top--
+	return val, nil
+}
+
+func (ms *MyStack) Peek() (interface{}, error) {
+	if ms.Size() == 0 {
+		return nil, emptyStackError
+	}
+	return ms.items[ms.top], nil
+}
+
+func (ms *MyStack) String() string {
+
+	return ""
+}
