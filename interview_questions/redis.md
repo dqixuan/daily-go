@@ -33,3 +33,43 @@ AOF重写缓存，保存重写过程中对数据库的修改操作。
 ```
 
 ##C语言字符串和Redis定制的SDS(simple dynamic string)的区别
+
+## 字典类型
+字典是数据结构如下
+```cgo
+struct dict {
+    ...
+    // 两个哈希表
+    dictht ht[2];
+    // rehash索引
+    int rehashidx;
+    ...
+}
+struct dictht {
+    // 哈希表数组
+    dictEntry **table;
+    // 哈希表大小
+    unsigned long size;
+    // 哈希表掩码 size-1
+    unsigned long sizemask;
+    // 哈希表已有节点数量
+    unsigned long used;
+}
+```
+        字典底层主要使用两个hashtable, ht[0]平时使用， ht[1]仅在rehash的时候使用
+        负载因子 load factor 控制，哈希表是扩容还是缩容   load factor = ht[0].used / ht[0].size 
+        扩容：未执行save/bgsave  factor>=1 执行扩容； 执行save/bgsave  factor >= 5  新容量 ht[0].used *2 大于该值的第一个2次幂
+        缩容：factor < 0.1  大于等于 ht[0].used的第一个2次幂
+        rehash过程不是一次性、全量进行的，而是分批次，渐进式
+        rehash过程：
+          1、为ht[1]分配空间，让字典同时持有两个hashtable
+          2、将rehashidx置为0
+          3、每当程序执行增、删、改、查操作，程序除了执行相应命令外，还会将ht[0]在rehashidx索引的所有键值对rehash到ht[1], rehashidx+1
+          4、重复步骤3直到ht[0]的数据为空，释放ht[0],将ht[1]设置为ht[0]，ht[1]设置为空哈希表, rehashidx置为-1
+        rehash过程中的增、删、改、查：
+            查：先在ht[0]查，再在ht[1]
+            增：在ht[1]增加键值对
+            删、改: 类似查操作
+        
+
+## sorted set  有序集合
