@@ -9,8 +9,9 @@ import (
 
 
 func main() {
-	h := []int{23,45,54,56,6,3,1,45,8,78}
-	fmt.Println(findKth(h, 5))
+	h := []int{3,2,3,1,2,4,5,5,6}
+	//fmt.Println(findKth(h, 5))
+	fmt.Println(getKth(h, 4))
 }
 
 
@@ -62,8 +63,35 @@ func (ih *IntHeap) Pop() interface{} {
 func getKth(arr []int, k int) int {
 	// 默认  len(arr) >=1    0<k<=len(arr)
 
-
-	return 0
+	return quickSort(arr, 0, len(arr)-1, len(arr)-k)
 }
 
+func quickSort(arr []int, left, right, k int) int {
+
+	sentinel := onceQuickSort(arr, left, right)
+	if sentinel == k {
+		return arr[sentinel]
+	} else if sentinel > k {
+		return quickSort(arr, left, sentinel-1, k)
+	} else {
+		return quickSort(arr, sentinel+1, right, k)
+	}
+}
+
+// 递减排序
+func onceQuickSort(arr []int, left, right int) int {
+	key := arr[left]
+	for left < right {
+		for left < right && arr[right] >= key {
+			right--
+		}
+		arr[left] = arr[right]
+		for left < right && arr[left] <= key {
+			left++
+		}
+		arr[right] = arr[left]
+	}
+	arr[left] = key
+	return left
+}
 
