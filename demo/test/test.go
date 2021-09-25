@@ -1,29 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+	"time"
+)
 
 func main() {
-	aa := a{}
-	var bb t
-	bb = &b{aa}
-	if v, ok := bb.(t); ok {
-		fmt.Println(v.Test())
+	var arr [10]int
+	for i:=0; i < 10; i++ {
+		go func() {
+			for {
+				arr[i]++
+				runtime.Gosched()
+			}
+		}()
 	}
-	fmt.Println(bb.Test())
+	time.Sleep(time.Microsecond)
+	fmt.Println(arr)
 }
 
-type a struct {
-}
 
-type b struct {
-	a
-}
-
-type t interface {
-	Test() string
-}
-
-func (a *a) Test() string {
-
-	return "test"
-}
