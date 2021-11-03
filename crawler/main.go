@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	engine.Run(engine.Request{
-		Url:        "www.zhenai.com/zhenghun",
+	engine.SimpleEngine{}.Run(engine.Request{
+		Url:        "http://www.zhenai.com/zhenghun",
 		ParserFunc: parser.ParseCityList,
 	})
 }

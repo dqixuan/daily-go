@@ -7,7 +7,7 @@ import (
 )
 
 func Fetch(urlString string) (result [] byte, err error) {
-	resp, err := http.Get("https://www.zhenai.com/zhenghun")
+	resp, err := http.Get(urlString)
 	if err != nil {
 		return nil, fmt.Errorf("fetch get failed, err=%w", err)
 	}
