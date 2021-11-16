@@ -73,12 +73,12 @@ func serve(addr string, handler http.Handler, stop <- chan struct{}) error {
 func mainC() {
 	done := make(chan error, 2)
 	stop := make(chan struct{})
-	go func() {
-		done <- serveDebugC(stop)
-	}()
-	go func() {
-		done <- serveAPPC(stop)
-	}()
+	//go func() {
+	//	done <- serveDebugC(stop)
+	//}()
+	//go func() {
+	//	done <- serveAPPC(stop)
+	//}()
 
 	var stopped bool
 	for i:=0; i < cap(done); i++ {
