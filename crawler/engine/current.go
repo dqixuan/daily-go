@@ -1,6 +1,9 @@
 package engine
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type ConcurrentEngine struct {
 	Scheduler Scheduler
@@ -27,13 +30,20 @@ func (ce ConcurrentEngine) Run(seeds ...Request) {
 	}
 
 	for {
-		result := <- out
-		for _, item := range result.Item {
-			fmt.Printf("Got item: %v\n", item)
+		select {
+		case result := <- out:
+			for _, item := range result.Item {
+				fmt.Printf("Got item: %v\n", item)
+			}
+			for _, request := range result.Requests {
+				ce.Scheduler.Submit(request)
+			}
+		case <- time.After(30*time.Second):
+			fmt.Println("break")
+			break
 		}
-		for _, request := range result.Requests {
-			ce.Scheduler.Submit(request)
-		}
+
+
 	}
 
 }
