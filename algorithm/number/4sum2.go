@@ -11,4 +11,5 @@ func fourSumCount(nums1 []int, nums2 []int, nums3 []int, nums4 []int) int {
 	ans := 0
 	length := len(nums1)
 	for i1:=0; i1 < length; i1++ {}
+	return ans
 }

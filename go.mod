@@ -7,6 +7,7 @@ require (
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/protobuf v1.5.2
+	github.com/hashicorp/consul/api v1.11.0
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/micro/go-micro v1.18.0
 	github.com/onsi/gomega v1.14.0 // indirect
