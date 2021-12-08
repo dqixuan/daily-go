@@ -42,7 +42,7 @@ func removeDuplicates(numbers []int) int {
 	return pre+1
 }
 
-func main() {
+func main1() {
 	fmt.Println(removeDuplicates([]int{1, 2}))
 	fmt.Println(removeDuplicates([]int{1, 1, 2}))
 }

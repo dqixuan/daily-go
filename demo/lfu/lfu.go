@@ -31,11 +31,12 @@ type entry struct {
 
 const timeLayout = "2006-01-02 15:04-05"
 
+// 使用fmt.Println或%v打印entry时，指定打印格式
 func (e *entry) String() string {
 	return fmt.Sprintf("key:%v, value: %v， frequency:%d time:%s", e.key, e.value, e.frequency, e.createdAt.Format(timeLayout))
 }
 
-//
+// NewLURCache creates and initializes a new LFUCache.
 func NewLURCache(capacity int) *LFUCache {
 	return &LFUCache{
 		capacity: capacity,
@@ -44,6 +45,7 @@ func NewLURCache(capacity int) *LFUCache {
 	}
 }
 
+// sort sorts list of LFUCache
 func (lc *LFUCache) sort() {
 	sort.Slice(lc.list, func(i, j int) bool {
 		if lc.list[i].frequency == lc.list[j].frequency {
@@ -53,6 +55,7 @@ func (lc *LFUCache) sort() {
 	})
 }
 
+// Get 根据key获取对应值
 func (lc *LFUCache) Get(key interface{}) (result interface{}, exist bool) {
 	val, ok := lc.cacheMap[key]
 	if !ok {
@@ -66,7 +69,12 @@ func (lc *LFUCache) Get(key interface{}) (result interface{}, exist bool) {
 	return 
 }
 
+// Put 添加key、value
 func (lc *LFUCache) Put(key, value interface{}) {
+	if lc.cacheMap == nil {
+		lc.cacheMap = make(map[interface{}]*entry)
+		lc.list = make([]*entry, 0)
+	}
 	val, ok := lc.cacheMap[key]
 	if ok {
 		val.frequency++

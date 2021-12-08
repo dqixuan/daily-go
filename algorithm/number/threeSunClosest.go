@@ -12,7 +12,7 @@ import (
 
  */
 
-func threeSumClosest(nums []int, target int) int {
+func threeSumClosest1(nums []int, target int) int {
 	var best = math.MaxInt32
 	l := len(nums)
 	sort.Ints(nums)
@@ -46,7 +46,7 @@ func abs(num int) int{
 	return 0 - num
 }
 
-func main() {
+func main1() {
 	nums := []int{-1, 2, 1, -4}
 	fmt.Println(threeSumClosest(nums, 1))
 }
