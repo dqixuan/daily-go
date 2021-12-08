@@ -1,4 +1,4 @@
-module go.mod
+module daily-go
 
 go 1.14
 
