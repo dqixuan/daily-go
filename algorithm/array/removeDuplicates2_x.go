@@ -1,4 +1,4 @@
-package main
+package array
 
 /*
 
@@ -13,10 +13,26 @@ package main
 
 */
 
-func removeDuplicates(nums []int) int {
-
-}
-
-func main() {
-	
+func removeDuplicates2(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	idx, count := 0, 0
+	for i, v := range nums {
+		if i != idx {
+			nums[idx] = nums[i]
+		} else {
+			count++
+			idx++
+		}
+		if v == nums[idx] {
+			count++
+		} else {
+			count = 1
+		}
+		if count <= 2 {
+			idx++
+		}
+	}
+	return idx
 }

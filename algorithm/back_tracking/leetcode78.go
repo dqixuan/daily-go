@@ -1,6 +1,5 @@
-package main
+package back_tracking
 
-import "fmt"
 
 /**
 leetcode 78 子集
@@ -16,22 +15,18 @@ func subsets(nums []int) [][]int {
 	if len(nums) == 0 {
 		return ans
 	}
-	helper(nums, 0, &arr, &ans)
+	helper78(nums, 0, &arr, &ans)
 	return ans
 }
 
-func helper(nums []int, idx int, arr *[]int, ans *[][]int) {
+func helper78(nums []int, idx int, arr *[]int, ans *[][]int) {
 	*ans = append(*ans, append([]int{}, *arr...))
 
 	for i, l := idx, len(nums); i < l; i++ {
 		*arr = append(*arr, nums[i])
-		helper(nums, i+1, arr, ans)
+		helper78(nums, i+1, arr, ans)
 		*arr = (*arr)[:len(*arr)-1]
 	}
 	return
 }
 
-func main() {
-	nums := []int{1, 2, 3}
-	fmt.Println(subsets(nums))
-}

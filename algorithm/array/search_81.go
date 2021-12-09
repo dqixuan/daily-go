@@ -1,4 +1,4 @@
-package main
+package array
 
 func search(nums []int, target int) bool {
 	if len(nums) == 0 {

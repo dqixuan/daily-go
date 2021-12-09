@@ -7,7 +7,7 @@ import "fmt"
 思路：二分查找的变异形式：1，判断中间位置是否是目标；2，寻找递增区间，并判断目标是否在递增区间内
  */
 
-func search(nums []int, target int) int {
+func search33(nums []int, target int) int {
 	left, right := 0, len(nums)-1
 	for left <= right {
 		mid := left + (right-left)>>1

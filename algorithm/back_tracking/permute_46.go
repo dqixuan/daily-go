@@ -1,4 +1,4 @@
-package main
+package back_tracking
 
 import "fmt"
 
@@ -15,16 +15,16 @@ func permute1(nums []int) [][]int {
 		ans = append(ans, nums)
 		return ans
 	}
-	backTracing(nums, 0, &ans)
+	backTracing1(nums, 0, &ans)
 	return ans
 }
 
-func backTracing(nums []int, idx int, ans *[][]int) {
+func backTracing1(nums []int, idx int, ans *[][]int) {
 	*ans = append(*ans, append([]int{}, nums...))
 	for i, l := idx, len(nums); i < l-1; i++ {
 		for j := i + 1; j < l; j++ {
 			nums[i], nums[j] = nums[j], nums[i]
-			backTracing(nums, i+1, ans)
+			backTracing1(nums, i+1, ans)
 			nums[i], nums[j] = nums[j], nums[i]
 		}
 	}
@@ -38,11 +38,11 @@ func permute(nums []int) [][]int {
 		ans  [][]int
 		isIn = make([]bool, len(nums))
 	)
-	helper(nums, isIn, &arr, &ans)
+	helper1(nums, isIn, &arr, &ans)
 	return ans
 }
 
-func helper(nums []int, isIn []bool, arr *[]int, ans *[][]int) {
+func helper1(nums []int, isIn []bool, arr *[]int, ans *[][]int) {
 	if len(*arr) == len(nums) {
 		*ans = append(*ans, append([]int{}, *arr...))
 		return
@@ -53,7 +53,7 @@ func helper(nums []int, isIn []bool, arr *[]int, ans *[][]int) {
 		}
 		*arr = append(*arr, nums[i])
 		isIn[i] = true
-		helper(nums, isIn, arr, ans)
+		helper1(nums, isIn, arr, ans)
 		*arr = (*arr)[:len(*arr)-1]
 		isIn[i] = false
 	}

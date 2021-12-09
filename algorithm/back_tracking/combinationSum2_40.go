@@ -1,4 +1,4 @@
-package leetcode40
+package back_tracking
 
 import "sort"
 
