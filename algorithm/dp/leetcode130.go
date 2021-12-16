@@ -1,4 +1,4 @@
-package main
+package dp
 
 import "sort"
 
@@ -54,7 +54,7 @@ func dfs(i, j int, board [][]byte, dp [][]bool) {
 	return
 }
 
-func merge(intervals [][]int) [][]int {
+func merge1(intervals [][]int) [][]int {
 	length := len(intervals)
 	if length <= 1 {
 		return intervals
